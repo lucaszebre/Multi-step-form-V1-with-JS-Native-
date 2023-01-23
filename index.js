@@ -19,29 +19,58 @@ window.onload = function(){
     const step2 = document.querySelector("#step2")
     const step3 = document.querySelector("#step3")
     const step4 = document.querySelector("#step4")
+    const step5 = document.querySelector('#step5')
+    const goback =document.getElementById("goback"); 
+    const goback2 = document.getElementById("goback-pc");
+    const Nextstep = document.getElementById("Nextstep2");
+    const Nextstep2 = document.getElementById("Nextstep");
     function Affiche1(){
             step1.style.display="flex"
             step2.style.display="none"
             step3.style.display="none"
             step4.style.display="none"
+            step5.style.display="none"
+            goback.style.display="none"
+            goback2.style.display="none"
     } 
     function Affiche2(){
         step2.style.display="block"
         step1.style.display="none"
         step3.style.display="none"
         step4.style.display="none"
+        step5.style.display="none"
+        goback.style.display="block"
+        goback2.style.display="block"
     } 
     function Affiche3(){
         step2.style.display="none"
         step1.style.display="none"
         step3.style.display="block"
         step4.style.display="none"
+        step5.style.display="none"
+        goback.style.display="block"
+        goback2.style.display="block"
     } 
     function Affiche4(){
         step2.style.display="none"
         step1.style.display="none"
         step3.style.display="none"
         step4.style.display="block"
+        goback.style.display="block"
+        step5.style.display="none"
+        goback2.style.display="block"
+        i="4"
+    }
+    function Affiche5(){
+        step2.style.display="none"
+        step1.style.display="none"
+        step3.style.display="none"
+        step4.style.display="none"
+        step5.style.display="flex"
+        goback.style.display="none"
+        goback2.style.display="none"
+        Nextstep.style.display="none"
+        Nextstep2.style.display="none"
     }
 
     function ErrorNumber(){
@@ -109,6 +138,34 @@ function checked(){
     )
     
 }
+const button1= document.getElementById('1');
+const button2= document.getElementById('2');
+const button3= document.getElementById('3');
+const button4= document.getElementById('4');
+    function Button1(){
+        button1.style.backgroundColor="pink"
+        button4.style.backgroundColor=""
+        button2.style.backgroundColor=""
+        button3.style.backgroundColor=""
+    }
+    function Button2(){
+                button2.style.backgroundColor="pink"
+                button4.style.backgroundColor=""
+                button1.style.backgroundColor=""
+                button3.style.backgroundColor=""
+    }
+    function Button3(){
+        button4.style.backgroundColor=""
+                button1.style.backgroundColor=""
+                button2.style.backgroundColor=""
+                button3.style.backgroundColor="pink"
+    }
+    function Button4(){
+        button4.style.backgroundColor="pink"
+                button1.style.backgroundColor=""
+                button2.style.backgroundColor=""
+                button3.style.backgroundColor=""
+    }
     document.addEventListener('click',function(e){
         e.preventDefault()
     
@@ -259,6 +316,7 @@ if(e.target.id==="check1" || e.target.id==="price-step3" || e.target.id==="wrap-
 
 // Step 4  Start 
 function Step4(){
+    i="4"
     console.log(choice)
     if(isyearly){
         document.getElementById("enwrap").innerHTML=
@@ -284,6 +342,8 @@ function Step4(){
     </div>`;}}
 
 function AddonsOnline(){ 
+    i="4"
+    if(onlineservice ){
         if(isyearly){
             document.getElementById("block2-finish").innerHTML=`<span>Online service</span>
         <span>$
@@ -300,22 +360,35 @@ function AddonsOnline(){
         </span>`;
     
 
+}}
+else{
+    document.getElementById("block2-finish").innerHTML=``;
 }
 }
 function AddonsStorage(){
-        if(isyearly){
+        i="4"
+        if(largerstorage){
+            if(isyearly){
+                document.getElementById("block3-finish").innerHTML=`<span>Larger Storage</span>
+            <span> $<span id="">${priceLarger}/year</span></span>`;
+            }else{
+    
+            
             document.getElementById("block3-finish").innerHTML=`<span>Larger Storage</span>
-        <span> $<span id="">${priceLarger}/year</span></span>`;
-        }else{
-
+            <span> $<span id="">${priceLarger}/mo</span></span>`;
+        }
+        }
+        else
+        {
+            document.getElementById("block3-finish").innerHTML=``;
+        }
         
-        document.getElementById("block3-finish").innerHTML=`<span>Larger Storage</span>
-        <span> $<span id="">${priceLarger}/mo</span></span>`;
-    }
 }
 
 
 function AddonsProfile(){
+    i="4";
+    if(profile){
         if(isyearly){
             document.getElementById("block4-finish").innerHTML=`<span>Profile</span>
         <span> $<span id="">${priceProfile}/year</span></span>`;
@@ -324,6 +397,13 @@ function AddonsProfile(){
             document.getElementById("block4-finish").innerHTML=`<span>Profile</span>
             <span> $<span id="">${priceProfile}/mo</span></span>`;
         }
+    }
+    else
+    {
+        document.getElementById("block4-finish").innerHTML=``;
+    }
+        
+        
         
     
 
@@ -331,6 +411,7 @@ function AddonsProfile(){
 
 
 function Total(){
+    i="4";
     let total=priceProfile+priceLarger+priceOnline+mainprice;
     document.getElementById('wrap-money').innerHTML=`<div class="Total">
     Total
@@ -348,35 +429,80 @@ function Total(){
     if(e.target.id==="Nextstep" || e.target.id==="Nextstep2"){
         // Step 1 Start 
         
-        console.log(i);
-            console.log(step);
+        
         ErrorName();
         ErrorEmail();
         ErrorNumber();
         
         // Step 1 End
-        if(step && i==="1"){    // si tout les input valide on passer au prochain 
-            Affiche2()
-            i="2"
-        }
-        else if (i==="2"){
-            ischecked=true;
-            Affiche3()
-            i="3"
-
-        }
-        else if(i==="3" || document.getElementById("checkbox1").checked || document.getElementById("checkbox2").checked || document.getElementById("checkbox3").checked){
+        switch(i){
+            case '1':
+                if(step){
+                    Affiche2()
+                    Button2()
+                    i="2"
+                    console.log("le compteur est");
+                    console.log(i);
+                }
+                else{
+                    Affiche2()
+                    Button2()
+                    i="2"
+                    console.log("le compteur est");
+                    console.log(i);
+                }
+                break;
+            case '2':
+                ischecked=true;
+                Affiche3();
+                Button3()
+                i="3"
+                console.log("le compteur est");
+                console.log(i);
+                break;
+            case '3':
+                if( document.getElementById("checkbox1").checked || document.getElementById("checkbox2").checked || document.getElementById("checkbox3").checked){
+                    i="4"
             Step4();
             Affiche4();
+            Button4()
             // AddonsOnline()
-            (onlineservice && AddonsOnline());
-            (largerstorage && AddonsStorage());
-            (profile && AddonsProfile());
+            AddonsOnline();
+            AddonsStorage();
+            AddonsProfile();
 
             
             // AddonsProfile()
             Total();
-        }
+            console.log("le compteur est");
+            console.log(i);
+                }
+                else{
+                    i="4"
+            Step4();
+            Affiche4();
+            Button4()
+            // AddonsOnline()
+            AddonsOnline();
+            AddonsStorage();
+            AddonsProfile();
+
+            
+            // AddonsProfile()
+            Total();
+            console.log("le compteur est");
+            console.log(i);
+                }
+            break;
+        case '4':
+            console.log("le compteur est");
+            console.log(i);
+            Affiche5();
+            
+            console.log("FIn");
+            break;
+      
+            }
     }
     else if(
         e.target.id==="goback" || e.target.id==="goback-pc"
@@ -385,24 +511,31 @@ function Total(){
                 case '4':
                 Affiche3();
                 i="3";
-                
+                Button3()
+                console.log("le compteur est");
+            console.log(i);
                 break;
 
                 case '3':
                 Affiche2();
+                Button2();
                 i="2";
+                console.log("le compteur est");
+            console.log(i);
                 break;
 
                 case '2':
                 Affiche1();
+                Button1();
                 i="1";
+                console.log("le compteur est");
+            console.log(i);
                 break;
             }
     }
     
 
     
-
 })
 
 // toggle Start 
@@ -482,6 +615,7 @@ wraptoggle.addEventListener("click",function(){
 
 
 
+// 1 2 3 4 Start
 
 
 
