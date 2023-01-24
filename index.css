@@ -34,7 +34,7 @@ li a {
 
 .left{
     display: flex;
-    text-align: center;
+    align-items: center;
     justify-content: center;
     background: url(./assets/images/bg-sidebar-mobile.svg) no-repeat;
     background-size: cover ;
@@ -45,16 +45,26 @@ li a {
     padding: 0;
 
 }
+.bar{
+    color: white;
+    gap: 1em;
+    padding: 0.5em;
+    padding-bottom: 4em;
+    margin-bottom: 0;
+}
 
-.number-step{
+.num{
     align-items: center;
     display: flex;
     border: 1px white solid;
     border-radius: 50%;
-    padding:0.5em ;
-    font-size: 1rem;
+    padding:0.3em 0.8em;
+    font-size:1rem;
     height: 1.9em;
+    font-weight: 600;
 }
+
+
 .parent{
     display: flex;
     flex-direction: column;
@@ -102,7 +112,7 @@ li a {
 
 /* Step 1 STart  */
 .right-step1{
-    display: flex;
+    display: non;
     flex-direction: column;
     top: 5.5rem;
     position: absolute;
@@ -185,6 +195,7 @@ ul{
 
 
 .goback{
+    display: none;
     padding-left: 1em;
     color: gray;
     font-size: 1rem;
@@ -488,7 +499,7 @@ box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.11);
 
 
 /* Hover   Start */
-.number-step:hover{
+.num:hover{
     background-color: #bee2fa;
     color: black;
 }
@@ -553,25 +564,27 @@ box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.11);
     .left{
         display: flex;
         text-align: left;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: flex-start;
         background: url(./assets/images/bg-sidebar-desktop.svg) no-repeat;
         background-size: 100% 29rem ;
         background-position: center;
         flex-direction: column;
         margin: 0;
-        /* margin-top: 0.5em; */
-        padding: 0;
+        padding: 1.5em;
         background-size: 20rem 29rem;
         height: 100%;
         width: 100%;
         border-radius: .4rem;
-        /* width: 100%; */
-        /* margin-left: -4.5em; */
-        
+        align-items: flex-start;
     }
-    ul{
+    .bar{
+        justify-content: flex-start;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 0em;
+        padding-bottom: 0;
+        margin: 0;
     }
     
     body{
